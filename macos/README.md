@@ -2,7 +2,7 @@
 
 For the time being, we're building an Intel binary only. Universal builds to come later.
 
-- Install build tools: `brew install cmake gettext`
+- Install build tools: `brew install cmake gettext autoconf automake libtool`
 - Install build dependencies: `brew install wxwidgets jpeg-turbo`
 - Building a release app bundle, [signing the app](https://developer.apple.com/documentation/xcode/creating-distribution-signed-code-for-the-mac),
   [building an installer package for App Store distribution](https://developer.apple.com/documentation/xcode/packaging-mac-software-for-distribution) as well as
