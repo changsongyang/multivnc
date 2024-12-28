@@ -37,6 +37,7 @@ jobs:
           triplet: x64-windows
           token: ${{ github.token }}
       - name: Prepare LibreSSL
+        shell: bash
         run: |
           ./prepareLibreSSL.sh
       - name: Build
