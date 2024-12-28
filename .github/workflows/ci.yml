@@ -42,12 +42,13 @@ jobs:
         with:
           update: true
           install: >-
-            autotools
+            autotools git
       - name: Prepare LibreSSL for Windows
         if: ${{ matrix.os == 'windows-latest' }}
+        shell: msys2 {0}
         run: |
           git config --global core.autocrlf false
-          msys2 -c './prepareLibreSSL.sh'
+          ./prepareLibreSSL.sh
       - name: Prepare LibreSSL for Ubuntu or MacOS
         if: ${{ matrix.os != 'windows-latest' }}
         run: |
