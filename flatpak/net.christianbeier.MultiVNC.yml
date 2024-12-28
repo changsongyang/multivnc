@@ -39,6 +39,10 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
+    cleanup:
+      - /lib/libcrypto.a
+      - /lib/libssl.a
+      - /lib/libtls.a
     sources:
       - type: dir
         path: ..

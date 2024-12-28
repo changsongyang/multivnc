@@ -28,10 +28,32 @@ message("-----wxServDisc-----")
 set(WXSERVDISC_INSTALL OFF CACHE BOOL "Set to OFF to not include wxservdisc artifacts in install")
 add_subdirectory(libwxservdisc/src)
 
+# libressl
+message("-----LibreSSL-----")
+set(LIBRESSL_SKIP_INSTALL ON CACHE BOOL "Skip installation")
+set(LIBRESSL_APPS OFF CACHE BOOL "Build apps")
+set(LIBRESSL_TESTS OFF CACHE BOOL "Build tests")
+set(libssl_src_DIR ${CMAKE_SOURCE_DIR}/libressl)
+set(libssl_build_DIR ${CMAKE_BINARY_DIR}/libssl)
+# adds a source subdir with specifying a build output dir
+add_subdirectory(${libssl_src_DIR} ${libssl_build_DIR})
+# set these variables so Findssl can find the library
+set(OPENSSL_SSL_LIBRARY ${libssl_build_DIR}/ssl/libssl.a CACHE FILEPATH "")
+set(OPENSSL_CRYPTO_LIBRARY ${libssl_build_DIR}/crypto/libcrypto.a CACHE FILEPATH "")
+set(OPENSSL_INCLUDE_DIR ${libssl_src_DIR}/include CACHE PATH "")
+# set include directories so dependent code can find the headers
+include_directories(
+        ${CMAKE_BINARY_DIR}/include # generated headers in there
+        ${libssl_src_DIR}/include
+)
+
 # libvncclient
 message("-----LibVNCClient-----")
 set(LIBVNCSERVER_INSTALL OFF CACHE BOOL "Set to OFF to not include libvncserver artifacts in install")
 set(WITH_EXAMPLES OFF CACHE BOOL "Set to OFF to not build libvncserver examples")
+# disable looking for GnuTLS and grcypt to only have LibreSSL as above
+set(WITH_GNUTLS OFF CACHE BOOL "Search for the GnuTLS secure communications library to support TLS")
+set(WITH_GCRYPT OFF CACHE BOOL "Search for Libgcrypt to use as crypto backend")
 add_subdirectory(libvncserver)
 
 
