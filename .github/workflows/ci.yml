@@ -36,6 +36,13 @@ jobs:
           pkgs: wxwidgets gettext[tools]
           triplet: x64-windows
           token: ${{ github.token }}
+      - name: Install Windows Build Tools
+        if: ${{ matrix.os == 'windows-latest' }}
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            autotools
       - name: Prepare LibreSSL
         shell: bash
         run: |
