@@ -39,6 +39,7 @@ jobs:
       - name: Prepare LibreSSL
         shell: bash
         run: |
+          git config --global core.autocrlf false
           ./prepareLibreSSL.sh
       - name: Build
         run: |
