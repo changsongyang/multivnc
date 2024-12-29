@@ -38,8 +38,8 @@ set(libssl_build_DIR ${CMAKE_BINARY_DIR}/libssl)
 # adds a source subdir with specifying a build output dir
 add_subdirectory(${libssl_src_DIR} ${libssl_build_DIR})
 # set these variables so Findssl can find the library
-set(OPENSSL_SSL_LIBRARY ${libssl_build_DIR}/ssl/libssl${CMAKE_STATIC_LIBRARY_SUFFIX} CACHE FILEPATH "")
-set(OPENSSL_CRYPTO_LIBRARY ${libssl_build_DIR}/crypto/libcrypto${CMAKE_STATIC_LIBRARY_SUFFIX} CACHE FILEPATH "")
+set(OPENSSL_SSL_LIBRARY ${libssl_build_DIR}/ssl/${CMAKE_STATIC_LIBRARY_PREFIX}ssl${CMAKE_STATIC_LIBRARY_SUFFIX} CACHE FILEPATH "")
+set(OPENSSL_CRYPTO_LIBRARY ${libssl_build_DIR}/crypto/${CMAKE_STATIC_LIBRARY_PREFIX}crypto${CMAKE_STATIC_LIBRARY_SUFFIX} CACHE FILEPATH "")
 set(OPENSSL_INCLUDE_DIR ${libssl_src_DIR}/include CACHE PATH "")
 # set include directories so dependent code can find the headers
 include_directories(
